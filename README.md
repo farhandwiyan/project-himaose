@@ -13,7 +13,7 @@ Backend API untuk platform manajemen kegiatan Himpunan Mahasiswa Oseanografi. Di
 
 ## 📁 Folder Structure
 
-```text
+<pre>
 .
 ├── config/         # Konfigurasi database & environment
 ├── controllers/    # Handler untuk HTTP request
@@ -24,6 +24,7 @@ Backend API untuk platform manajemen kegiatan Himpunan Mahasiswa Oseanografi. Di
 ├── utils/          # Helper (response formatter, hash, dll)
 ├── main.go         # Entry point aplikasi
 └── .env            # Konfigurasi variabel lingkungan
+</pre>
 
 <pre>
 git clone https://github.com/farhandwiyan/project-himaose.git
