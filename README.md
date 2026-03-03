@@ -13,7 +13,7 @@ Backend API untuk platform manajemen kegiatan Himpunan Mahasiswa Oseanografi. Di
 
 ## 📁 Folder Structure
 
-Project ini mengikuti pola Clean Architecture sederhana (Controller-Service-Repository):
+```text
 .
 ├── config/         # Konfigurasi database & environment
 ├── controllers/    # Handler untuk HTTP request
@@ -25,4 +25,6 @@ Project ini mengikuti pola Clean Architecture sederhana (Controller-Service-Repo
 ├── main.go         # Entry point aplikasi
 └── .env            # Konfigurasi variabel lingkungan
 
+<pre>
 git clone https://github.com/farhandwiyan/project-himaose.git
+</pre>
