@@ -10,6 +10,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/google/uuid"
+	"github.com/jinzhu/copier"
 )
 
 type LombaController struct {
@@ -116,4 +117,17 @@ func (c *LombaController) DeleteLomba(ctx *fiber.Ctx) error {
 	}
 
 	return utils.Success(ctx, "Succes deleted data", pubID)
+}
+
+func (c *LombaController) GetAllByStatusOprec(ctx *fiber.Ctx) error {
+	lomba, err := c.service.GetAllByStatusOprec()
+	
+	if err != nil {
+		return utils.NotFound(ctx, "Data not found", err.Error())
+	}
+
+	var lombaResp []models.LombaResponse
+	_ = copier.Copy(&lombaResp, &lomba)
+
+	return utils.Success(ctx, "Success get data", lombaResp)
 }

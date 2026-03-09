@@ -21,7 +21,11 @@ func Setup(app *fiber.App, uc *controllers.UserController,
 
 	app.Post("/v1/auth/register", uc.Register)
 	app.Post("/v1/auth/login", uc.Login)
-	
+
+	app.Get("v1/proker/all", pc.GetAllByStatusOprec)
+	app.Get("v1/lomba/all", lc.GetAllByStatusOprec)
+	app.Get("v1/beasiswa/all", bc.GetAllByStatusOprec)
+
 	// JWT protected routes
 	api := app.Group("/api/v1", jwtware.New(jwtware.Config{
 		SigningKey: []byte(config.AppConfig.JWTSecret),

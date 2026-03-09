@@ -14,6 +14,7 @@ type ProgramKerjaService interface {
 	GetByPublicID(publicID string) (*models.ProgramKerja, error)
 	GetAllByUserPaginate(userID int64, filter,sort string, limit,offset int) ([]models.ProgramKerja, int64, error) 
 	DeleteProgramKerjaByID(publicID string) error 
+	GetAllByStatusOprec() ([]models.ProgramKerja, error)
 }
 
 type programKerjaService struct {
@@ -58,4 +59,8 @@ func (s *programKerjaService) GetAllByUserPaginate(userID int64, filter,sort str
 
 func (s *programKerjaService) DeleteProgramKerjaByID(publicID string) error {
 	return s.programKerjaRepo.Delete(publicID)
+}
+
+func (s *programKerjaService) GetAllByStatusOprec() ([]models.ProgramKerja,error) {
+	return s.programKerjaRepo.FindByStatus("berjalan")
 }

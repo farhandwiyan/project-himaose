@@ -13,6 +13,7 @@ type BeasiswaRepository interface {
 	FindByPublicID(publicID string) (*models.Beasiswa, error)
 	FindAllByUserPaginate(userID int64, filter,sort string, limit,offset int) ([]models.Beasiswa, int64, error) 
 	Delete(publicID string) error
+	FindByStatus(closeDate string) ([]models.Beasiswa, error)
 }
 
 type beasiswaRepository struct {
@@ -84,4 +85,20 @@ func (r *beasiswaRepository) Delete(publicID string) error {
     }
 
     return nil
+}
+
+func (r *beasiswaRepository) FindByStatus(closeDate string) ([]models.Beasiswa, error) {
+	var beasiswa []models.Beasiswa
+
+	query := config.DB.Model(&models.Beasiswa{}).Where("tgl_tutup >= ?", closeDate)
+
+	if query.Error != nil {
+		return nil, errors.New("no record found with that status")
+	}
+
+	if err := query.Find(&beasiswa).Error; err != nil {
+		return nil, err
+	}
+
+	return beasiswa, nil
 }

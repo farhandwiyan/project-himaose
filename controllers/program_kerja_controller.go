@@ -10,6 +10,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/google/uuid"
+	"github.com/jinzhu/copier"
 )
 
 type ProgramKerjaController struct {
@@ -116,4 +117,17 @@ func (c *ProgramKerjaController) DeleteProgramKerja(ctx *fiber.Ctx) error {
 	}
 
 	return utils.Success(ctx, "Succes deleted data", pubID)
+}
+
+func (c *ProgramKerjaController) GetAllByStatusOprec(ctx *fiber.Ctx) error {
+	proker, err := c.service.GetAllByStatusOprec()
+
+	if err != nil {
+		return utils.NotFound(ctx, "Data not found", err.Error())
+	}
+
+	var prokerResp []models.ProgramKerjaResponse
+	_ = copier.Copy(&prokerResp, &proker)
+
+	return utils.Success(ctx, "Success get data", prokerResp)
 }

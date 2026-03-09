@@ -13,6 +13,7 @@ type ProgramKerjaRepository interface {
 	FindByPublicID(PublicID string) (*models.ProgramKerja, error)
 	FindAllByUserPaginate(userID int64, filter,sort string, limit,offset int) ([]models.ProgramKerja, int64, error) 
 	Delete(publicID string) error
+	FindByStatus(status string) ([]models.ProgramKerja, error)
 }
 
 type programKerjaRepository struct {
@@ -84,4 +85,20 @@ func (r *programKerjaRepository) Delete(publicID string) error {
     }
 
     return nil
+}
+
+func (r *programKerjaRepository) FindByStatus(status string) ([]models.ProgramKerja, error) {
+	var proker []models.ProgramKerja
+
+	query := config.DB.Model(&models.ProgramKerja{}).Where("status = ?", status)
+
+	if query.Error != nil {
+		return nil, errors.New("no record found with that status")
+	}
+
+	if err := query.Find(&proker).Error; err != nil {
+		return nil, err 
+	}
+
+	return proker, nil
 }

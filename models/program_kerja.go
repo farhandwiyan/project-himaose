@@ -23,3 +23,12 @@ type ProgramKerja struct {
 func (ProgramKerja) TableName() string {
     return "program_kerja"
 }
+
+type ProgramKerjaResponse struct {
+	PublicID uuid.UUID `json:"public_id" db:"public_id"`
+	NamaProker string `json:"nama_proker" db:"nama_proker"`
+	Deskripsi string `json:"deskripsi" db:"deskripsi"`
+	Divisi string `json:"divisi" db:"divisi"`
+	Status string `json:"status" db:"status"`
+	LinkOprec string `json:"link_oprec" db:"link_oprec"`
+}

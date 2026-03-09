@@ -13,6 +13,7 @@ type LombaRepository interface {
 	FindByPublicID(publicID string) (*models.Lomba, error)
 	FindAllByUserPaginate(userID int64, filter,sort string, limit,offset int) ([]models.Lomba, int64, error)
 	Delete(publicID string) error
+	FindByStatus(closeDate string) ([]models.Lomba, error)
 }
 
 type lombaRepository struct {
@@ -85,4 +86,20 @@ func (r *lombaRepository) Delete(publicID string) error {
     }
 
     return nil
+}
+
+func (r *lombaRepository) FindByStatus(closeDate string) ([]models.Lomba, error) {
+	var lomba []models.Lomba
+
+	query := config.DB.Model(models.Lomba{}).Where("tgl_tutup >= ?", closeDate)
+
+	if query.Error != nil {
+		return nil, errors.New("no record found with that status")
+	}
+
+	if err := query.Find(&lomba).Error; err != nil {
+		return nil, err
+	}
+
+	return lomba, nil
 }

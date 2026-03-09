@@ -10,6 +10,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/google/uuid"
+	"github.com/jinzhu/copier"
 )
 
 type BeasiswaController struct {
@@ -116,4 +117,17 @@ func (c *BeasiswaController) DeleteBeasiswa(ctx *fiber.Ctx) error {
 	}
 
 	return utils.Success(ctx, "Succes deleted data", pubID)
+}
+
+func (c *BeasiswaController) GetAllByStatusOprec(ctx *fiber.Ctx) error {
+	beasiswa, err := c.service.GetAllByStatusOprec()
+
+	if err != nil {
+		return utils.NotFound(ctx, "Data not found", err.Error())
+	}
+
+	var beasiswaResp []models.BeasiswaResp
+	_ = copier.Copy(&beasiswaResp, &beasiswa)
+
+	return utils.Success(ctx, "Success get data", beasiswaResp)
 }

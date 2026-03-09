@@ -2,6 +2,7 @@ package services
 
 import (
 	"errors"
+	"time"
 
 	"github.com/farhandwiyan/project-himaose/models"
 	"github.com/farhandwiyan/project-himaose/repositories"
@@ -14,6 +15,7 @@ type BeasiswaService interface {
 	GetByPublicID(publicID string) (*models.Beasiswa, error)
 	GetAllByUserPaginate(userID int64, filter,sort string, limit,offset int) ([]models.Beasiswa, int64, error)
 	DeleteBeasiswaByID(publicID string) error
+	GetAllByStatusOprec() ([]models.Beasiswa, error)
 }
 
 type beasiswaService struct {
@@ -55,4 +57,10 @@ func (s *beasiswaService) GetAllByUserPaginate(userID int64, filter,sort string,
 
 func (s *beasiswaService) DeleteBeasiswaByID(publicID string) error {
 	return s.beasiswaRepo.Delete(publicID)
+}
+
+func (s *beasiswaService) GetAllByStatusOprec() ([]models.Beasiswa, error) {
+	now := time.Now().Format("2006-01-02")
+	
+	return s.beasiswaRepo.FindByStatus(now)
 }

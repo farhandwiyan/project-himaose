@@ -2,6 +2,7 @@ package services
 
 import (
 	"errors"
+	"time"
 
 	"github.com/farhandwiyan/project-himaose/models"
 	"github.com/farhandwiyan/project-himaose/repositories"
@@ -14,6 +15,7 @@ type LombaService interface {
 	GetByPublicID(publicID string) (*models.Lomba, error) 
 	GetAllByUserPaginate(userID int64, filter,sort string, limit,offset int) ([]models.Lomba, int64, error)
 	DeleteLombaByID(publicID string) error
+	GetAllByStatusOprec() ([]models.Lomba, error)
 }
 
 type lombaService struct {
@@ -58,4 +60,10 @@ func (s *lombaService) GetAllByUserPaginate(userID int64, filter,sort string, li
 
 func (s *lombaService) DeleteLombaByID(publicID string) error {
 	return s.lombaRepo.Delete(publicID)
+}
+
+func (s *lombaService) GetAllByStatusOprec() ([]models.Lomba, error) {
+	now := time.Now().Format("2006-01-02")
+
+	return s.lombaRepo.FindByStatus(now)
 }
