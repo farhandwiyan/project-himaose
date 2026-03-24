@@ -1,0 +1,1 @@
+DROP COLUMN link_pendaftaran;

@@ -1,0 +1,17 @@
+# Environment variables
+.env
+
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+bin/
+
+# Dependency directories (biasanya tidak di-push)
+vendor/
+
+# IDE specific files
+.vscode/
+.idea/

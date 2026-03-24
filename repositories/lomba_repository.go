@@ -33,6 +33,7 @@ func (r *lombaRepository) Update(lomba *models.Lomba) error {
 	Where("public_id = ?", lomba.PublicID).Updates(map[string]interface{}{
 		"nama_lomba": lomba.NamaLomba,
 		"deskripsi_lomba":lomba.DeskripsiLomba,
+		"link_pendaftaran":lomba.LinkPendaftaran,
 		"persyaratan": lomba.Persyaratan,
 		"tgl_buka": lomba.TglBuka,
 		"tgl_tutup": lomba.TglTutup,

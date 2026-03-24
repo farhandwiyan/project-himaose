@@ -15,17 +15,27 @@ Backend API untuk platform manajemen kegiatan Himpunan Mahasiswa Oseanografi. Di
 
 <pre>
 .
-├── config/         # Konfigurasi database & environment
-├── controllers/    # Handler untuk HTTP request
-├── middleware/     # JWT & Logging middleware
-├── models/         # Struct database & JSON schema
-├── repository/     # Query langsung ke database
-├── services/       # Logic bisnis & validasi
-├── utils/          # Helper (response formatter, hash, dll)
-├── main.go         # Entry point aplikasi
-└── .env            # Konfigurasi variabel lingkungan
+├── config/         
+├── controllers/   
+├── database/    
+├── middleware/     
+├── models/         
+├── repository/
+├── routes/     
+├── services/       
+├── utils/          
+├── main.go         
+└── .env            
 </pre>
 
 <pre>
 git clone https://github.com/farhandwiyan/project-himaose.git
+</pre>
+
+<pre>
+# Membuat file migrasi baru
+migrate create -ext sql -dir database/migrations -seq nama_file_migrasi
+
+# Menjalankan migrasi
+migrate -path database/migrations/ -database "mysql://user:password@tcp(localhost:3306)/nama_db" up
 </pre>

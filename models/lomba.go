@@ -11,6 +11,7 @@ type Lomba struct {
 	PublicID uuid.UUID `json:"public_id" db:"public_id"`
 	NamaLomba string `json:"nama_lomba" db:"nama_lomba"`
 	DeskripsiLomba string `json:"deskripsi_lomba" db:"deskripsi_lomba"`
+	LinkPendaftaran string `json:"link_pendaftaran" db:"link_pendaftaran"`
 	Persyaratan string `json:"persyaratan" db:"persyaratan"`
 	TglBuka time.Time `json:"tgl_buka" db:"tgl_buka"`
 	TglTutup time.Time `json:"tgl_tutup" db:"tgl_tutup"`
@@ -28,6 +29,7 @@ type LombaResponse struct {
 	PublicID uuid.UUID `json:"public_id" db:"public_id"`
 	NamaLomba string `json:"nama_lomba" db:"nama_lomba"`
 	DeskripsiLomba string `json:"deskripsi_lomba" db:"deskripsi_lomba"`
+	LinkPendaftaran string `json:"link_pendaftaran" db:"link_pendaftaran"`
 	Persyaratan string `json:"persyaratan" db:"persyaratan"`
 	TglBuka time.Time `json:"tgl_buka" db:"tgl_buka"`
 	TglTutup time.Time `json:"tgl_tutup" db:"tgl_tutup"`

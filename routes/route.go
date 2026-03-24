@@ -7,6 +7,7 @@ import (
 	"github.com/farhandwiyan/project-himaose/controllers"
 	"github.com/farhandwiyan/project-himaose/utils"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	jwtware "github.com/gofiber/jwt/v3"
 	"github.com/joho/godotenv"
 )
@@ -18,6 +19,12 @@ func Setup(app *fiber.App, uc *controllers.UserController,
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
+
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: "http://127.0.0.1:5500,http://localhost:5500,http://localhost:3001",
+		AllowHeaders: "Origin,Content-Type,Accept,Authorization",
+		AllowMethods: "GET,POST,PUT,DELETE,OPTIONS",
+	}))
 
 	app.Post("/v1/auth/register", uc.Register)
 	app.Post("/v1/auth/login", uc.Login)

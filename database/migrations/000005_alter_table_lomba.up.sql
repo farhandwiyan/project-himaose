@@ -1,0 +1,2 @@
+ALTER TABLE LOMBA 
+ADD link_pendaftaran VARCHAR(255);
