@@ -74,9 +74,9 @@ func ConnectDB() {
 		log.Fatal("Failed to get database instance", err)
 	}
 
-	sqlDB.SetMaxIdleConns(10)
-	sqlDB.SetMaxOpenConns(100)
-	sqlDB.SetConnMaxLifetime(time.Hour)
+	sqlDB.SetMaxIdleConns(2)
+	sqlDB.SetMaxOpenConns(1)
+	sqlDB.SetConnMaxLifetime(time.Minute * 2)
 
 	DB = db
 }
