@@ -26,6 +26,7 @@ type Config struct {
 	JWTSecret string
 	JWTExpired string
 	RefreshToken string
+	AllowOrigins string
 }
 
 func LoadEnv() {
@@ -44,6 +45,7 @@ func LoadEnv() {
 		JWTSecret: getEnv("JWT_SECRET", "super_secret"),
 		JWTExpired: getEnv("JWT_EXPIRED", "6h"),
 		RefreshToken: getEnv("REFRESH_TOKEN_EXPIRED", "24h"),
+		AllowOrigins: getEnv("ALLOW_ORIGINS", ""),
 	}
 }
 

@@ -20,8 +20,10 @@ func Setup(app *fiber.App, uc *controllers.UserController,
 		log.Fatal("Error loading .env file")
 	}
 
+	origins := config.AppConfig
+
 	app.Use(cors.New(cors.Config{
-		AllowOrigins: "http://127.0.0.1:5500,http://localhost:5500,http://localhost:3001",
+		AllowOrigins: origins.AllowOrigins,
 		AllowHeaders: "Origin,Content-Type,Accept,Authorization",
 		AllowMethods: "GET,POST,PUT,DELETE,OPTIONS",
 	}))
