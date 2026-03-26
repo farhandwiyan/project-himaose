@@ -2,7 +2,6 @@ package main
 
 import (
 	"log"
-	"os"
 
 	"github.com/farhandwiyan/project-himaose/config"
 	"github.com/farhandwiyan/project-himaose/controllers"
@@ -42,12 +41,7 @@ func main() {
 	
 	routes.Setup(app, userController, prokerController, lombaController, beasiswaController)
 
-	port := os.Getenv("PORT")
-
-	if port == "" {
-		port = config.AppConfig.AppPort 
-	}
-
+	port := config.AppConfig.AppPort
 	log.Println("Server is running on port :", port)
 	log.Fatal(app.Listen(":"+port))
 }
