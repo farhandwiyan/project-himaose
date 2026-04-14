@@ -27,6 +27,7 @@ Backend API untuk platform manajemen kegiatan Himpunan Mahasiswa Oseanografi. Di
 └── .env            
 </pre>
 
+## Clone Repository
 <pre>
 git clone https://github.com/farhandwiyan/project-himaose.git
 </pre>
