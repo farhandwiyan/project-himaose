@@ -2,6 +2,8 @@
 
 Backend API untuk platform manajemen kegiatan Himpunan Mahasiswa Oseanografi. Dibangun menggunakan **Go (Golang)** dengan framework **Fiber** dan **GORM** sebagai ORM-nya.
 
+**[HimaOse Repository](https://github.com/Dhimno/HimaOSE)**
+
 ## Tech Stack
 
 * **Language:** Go (Golang)
